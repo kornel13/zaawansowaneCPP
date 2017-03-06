@@ -49,8 +49,24 @@ QPainterPath Connection::shape() const
 
 void Connection::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
-    const qreal Pi = 3.14f;
-    QGraphicsLineItem::paint(painter,option,widget);
+    QPen myPen = pen();
+    myPen.setColor(Qt::black);
+    painter->setPen(myPen);
+    painter->setBrush(Qt::black);
+
+    QLineF centerLine(mapFromItem(start, start->boundingRect().center()), mapFromItem(finish, finish->boundingRect().center()));
+    setLine(centerLine);
+    painter->drawLine(line());
+
+    if (isSelected()) {
+        painter->setPen(QPen(Qt::black, 1, Qt::DashLine));
+        QLineF myLine = line();
+        myLine.translate(0, 4.0);
+        painter->drawLine(myLine);
+        myLine.translate(0,-8.0);
+        painter->drawLine(myLine);
+    }
+
 }
 
 
