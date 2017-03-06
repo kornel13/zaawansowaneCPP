@@ -40,13 +40,6 @@ QRectF Connection::boundingRect() const
         .adjusted(-extra, -extra, extra, extra);
 }
 
-QPainterPath Connection::shape() const
-{
-    QPainterPath path = QGraphicsLineItem::shape();
-    //path.addPolygon(arrow);
-    return path;
-}
-
 void Connection::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
     QPen myPen = pen();
