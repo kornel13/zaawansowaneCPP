@@ -26,7 +26,7 @@ Connection::Connection(std::shared_ptr<OutputElement> _start, std::shared_ptr<In
 /* TO REFACTOR - IMPORTANT */
 void Connection::updatePosition()
 {
-    QLineF line(mapFromItem(start, 0, 0), mapFromItem(finish, 0, 0));
+    QLineF line(mapFromItem(start, start->boundingRect().center()), mapFromItem(finish, finish->boundingRect().center()));
     setLine(line);
 }
 
