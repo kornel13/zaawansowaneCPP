@@ -4,6 +4,8 @@
 #include <QRectF>
 #include <QBrush>
 
+#include <QDebug>
+
 const qreal Block::SIZE = 100;
 
 Block::Block()
@@ -36,7 +38,7 @@ void Block::setInputs(int number)
     {
         centerY = startXYCoordinate + i * step;
 
-        auto inputItem = std::make_shared<InputElement>(QPointF(centerX,centerY) );
+        auto inputItem = std::make_shared<InputElement>(QPointF(centerX,centerY), this);
         addToGroup(inputItem.get());
 
         inputs.append(inputItem);
@@ -48,7 +50,7 @@ void Block::setOutput()
     qreal centerX = SIZE / 2;
     qreal centerY = 0;
 
-    output = std::make_shared<OutputElement>(QPointF(centerX,centerY));
+    output = std::make_shared<OutputElement>(QPointF(centerX,centerY), this);
     addToGroup(output.get());
 
 }
@@ -65,14 +67,9 @@ int Block::whichInputCanBeConnected(QPointF point)
     int whichCanConnect = -1;
     for( int i = 0; i < inputs.size(); ++i )
     {
-        QPointF pp = mapFromScene(point);
-        QPointF pp2 = mapToScene(point);
-        QRectF huj = inputs[i]->boundingRect();
-        bool hh = huj.contains(pp);
-        bool ff = !inputs[i]->isConnection();
-        bool dupa = hh && ff;
+        QPointF mappedPoint = mapFromScene(point);
 
-        if(inputs[i]->boundingRect().contains(pp) && !inputs[i]->isConnection() )
+        if(inputs[i]->boundingRect().contains(mappedPoint) && !inputs[i]->isConnection() )
         {
             whichCanConnect = i;
             break;
@@ -84,9 +81,8 @@ int Block::whichInputCanBeConnected(QPointF point)
 
 bool Block::canOutputBeConnected(QPointF point)
 {
-    QPointF pp = mapFromScene(point);
-    bool cos = output->boundingRect().contains(point) && !output->isConnection();
-    return output->boundingRect().contains(point) && !output->isConnection();
+    QPointF mappedPoint = mapFromScene(point);
+    return output->boundingRect().contains(mappedPoint) && !output->isConnection();
 }
 
 

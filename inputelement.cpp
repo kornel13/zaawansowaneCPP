@@ -5,7 +5,8 @@
 
 const qreal InputElement::SIZE = 10;
 
-InputElement::InputElement(QPointF center)
+InputElement::InputElement(QPointF center, QGraphicsItem *parent)
+    : QGraphicsRectItem(parent)
 {
     QPointF p1 = QPointF(center.x() - SIZE/2,center.y() + SIZE/2);
     QPointF p2 = QPointF(center.x() + SIZE/2,center.y() - SIZE/2);

@@ -10,7 +10,7 @@ class Connection;
 class InputElement : public QGraphicsRectItem
 {
 public:
-    InputElement(QPointF center);
+    InputElement(QPointF center, QGraphicsItem *parent = nullptr);
     void addConnection(Connection* connection);
     void removeConnection(Connection* connection);
     bool isConnection() { return connection != nullptr; }

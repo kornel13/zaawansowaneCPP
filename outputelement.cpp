@@ -2,9 +2,10 @@
 
 #include <QBrush>
 
-const qreal OutputElement::SIZE = 15;
+const qreal OutputElement::SIZE = 25;
 
-OutputElement::OutputElement(QPointF center)
+OutputElement::OutputElement(QPointF center, QGraphicsItem *parent)
+    : QGraphicsPolygonItem(parent)
 {
     QPolygonF polygon = QPolygonF();
 

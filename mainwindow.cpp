@@ -15,6 +15,8 @@ MainWindow::MainWindow(QWidget *parent) :
     scene = new Scene(this);
 
     ui->graphicsView->setScene(scene);
+    scene->setSceneRect(0,0,ui->graphicsView->width(),ui->graphicsView->height());
+
     ui->centralWidget->setMouseTracking(true);
     //ui->widget->setMouseTracking(true);
 

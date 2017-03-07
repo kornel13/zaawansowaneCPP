@@ -57,19 +57,18 @@ void Scene::mouseReleaseEvent(QGraphicsSceneMouseEvent *mouseEvent)
 {
     if ( InsertConnection == mode && currentLine )
     {
-        qDebug("Tutaj 1\n");
         QPointF startPoint = currentLine->line().p1();
         QPointF finishPoint = currentLine->line().p2();
+        qDebug()<<"startPoint: "<<startPoint<<"finishPoint: "<<finishPoint<<"\n";
+
         QList<QGraphicsItem *> blocksAtLineStart = items(startPoint);
         QList<QGraphicsItem *> blocksAtLineFinish = items(finishPoint);
 
         filterBlockItems(blocksAtLineStart);
         filterBlockItems(blocksAtLineFinish);
 
-        qDebug("Tutaj 2\n");
         if(!blocksAtLineStart.isEmpty() && !blocksAtLineFinish.isEmpty() )
         {
-            qDebug("Tutaj 3\n");
             Block *startBlock = qgraphicsitem_cast<Block *>(blocksAtLineStart.first());
             Block *finishBlock = qgraphicsitem_cast<Block *>(blocksAtLineFinish.first());
             if(startBlock != finishBlock)
@@ -78,7 +77,6 @@ void Scene::mouseReleaseEvent(QGraphicsSceneMouseEvent *mouseEvent)
                 if(startBlock->canOutputBeConnected(startPoint)
                         && finishBlock->whichInputCanBeConnected(finishPoint) != -1)
                 {
-                    qDebug("Tutaj 4n");
                     inputIndex = finishBlock->whichInputCanBeConnected(finishPoint);
 
                     Connection *connection = new Connection(startBlock->getOutput(), finishBlock->getInput(inputIndex));
