@@ -63,31 +63,8 @@ void Scene::mouseReleaseEvent(QGraphicsSceneMouseEvent *mouseEvent)
         QList<QGraphicsItem *> blocksAtLineStart = items(startPoint);
         QList<QGraphicsItem *> blocksAtLineFinish = items(finishPoint);
 
-        if ( !blocksAtLineStart.isEmpty() )
-        {
-           for(int i = 0; i < blocksAtLineStart.size(); ++i)
-           {
-               if(blocksAtLineStart[i]->type() != Block::Type)
-               {
-                   blocksAtLineStart.removeAt(i);
-                   --i;
-               }
-           }
-
-        }
-
-        if ( !blocksAtLineFinish.isEmpty())
-        {
-           for(int i = 0; i < blocksAtLineFinish.size(); ++i)
-           {
-               if(blocksAtLineFinish[i]->type() != Block::Type)
-               {
-                   blocksAtLineFinish.removeAt(i);
-                   --i;
-               }
-           }
-
-        }
+        filterBlockItems(blocksAtLineStart);
+        filterBlockItems(blocksAtLineFinish);
 
         qDebug("Tutaj 2\n");
         if(!blocksAtLineStart.isEmpty() && !blocksAtLineFinish.isEmpty() )
@@ -95,20 +72,8 @@ void Scene::mouseReleaseEvent(QGraphicsSceneMouseEvent *mouseEvent)
             qDebug("Tutaj 3\n");
             Block *startBlock = qgraphicsitem_cast<Block *>(blocksAtLineStart.first());
             Block *finishBlock = qgraphicsitem_cast<Block *>(blocksAtLineFinish.first());
-            //if(startBlock != finishBlock)
+            if(startBlock != finishBlock)
             {
-                /*
-
-                if(startBlock->canOutputBeConnected(startPoint) )
-                    qDebug("Output OK\n");
-                else
-                    qDebug("Output NOK\n");
-
-                if (finishBlock->whichInputCanBeConnected(finishPoint) != -1)
-                    qDebug("Input OK: %d\n");
-                else
-                    qDebug("Input NOK\n");
-                */
                 int inputIndex = -1;
                 if(startBlock->canOutputBeConnected(startPoint)
                         && finishBlock->whichInputCanBeConnected(finishPoint) != -1)
@@ -122,7 +87,6 @@ void Scene::mouseReleaseEvent(QGraphicsSceneMouseEvent *mouseEvent)
                     connection->updatePosition();
                 }
             }
-
         }
 
 
@@ -139,5 +103,21 @@ void Scene::modeChanged(QAction *action)
     qDebug("Menu: %s\n", action->text());
     if( action -> text() == "Move") mode = MoveBlock;
     else mode = InsertConnection;
+}
+
+void Scene::filterBlockItems(QList<QGraphicsItem *> &list)
+{
+    if ( !list.isEmpty())
+    {
+       for(int i = 0; i < list.size(); ++i)
+       {
+           if(list[i]->type() != Block::Type)
+           {
+               list.removeAt(i);
+               --i;
+           }
+       }
+
+    }
 }
 

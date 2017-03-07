@@ -25,6 +25,8 @@ private:
     Mode mode;
     QGraphicsLineItem *currentLine;
 
+    void filterBlockItems(QList<QGraphicsItem *> &list);
+
 public slots:
     void modeChanged(QAction * action);
 };
