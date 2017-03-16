@@ -19,11 +19,6 @@ Scene::Scene(QObject *parent)
     //test
     addItem(new GraphicsItem());
 
-    GraphicsItem *secondItem = new GraphicsItem();
-    qreal x = secondItem->x() + 200;
-    secondItem->setX(x);
-
-    addItem(secondItem);
 
 }
 
@@ -36,7 +31,7 @@ void Scene::mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent)
         addItem(currentLine);
     }else if (InsertItem == mode)
     {
-        emit itemInserted(mouseEvent->pos());
+        emit itemInserted(mouseEvent->scenePos());
     }
 
     //qDebug("Wcisnieto\n");
