@@ -10,6 +10,8 @@ class MainWindow;
 }
 
 class Scene;
+class Controller;
+class ItemButtonWidget;
 
 class MainWindow : public QMainWindow
 {
@@ -22,6 +24,8 @@ public:
 private:
     Ui::MainWindow *ui;
     Scene *scene;
+    Controller *controller;
+    ItemButtonWidget *itemButtonWidget;
     QActionGroup *actionGroup;
 
     void setSignalsSlots();

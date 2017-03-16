@@ -1,5 +1,5 @@
-#ifndef BLOCK_H
-#define BLOCK_H
+#ifndef GRAPHICSITEM_H
+#define GRAPHICSITEM_H
 
 #include <QGraphicsItemGroup>
 #include <QVector>
@@ -10,13 +10,13 @@
 #include "outputelement.h"
 
 
-class Block : public QGraphicsItemGroup
+class GraphicsItem : public QGraphicsItemGroup
 {
 public /*enumerations*/:
     enum { Type = UserType + 10 };
 
 public:
-    Block();
+    GraphicsItem();
     int whichInputCanBeConnected(QPointF point);
     bool canOutputBeConnected(QPointF point);
 
@@ -51,4 +51,4 @@ private:
     static const qreal SIZE;
 };
 
-#endif // BLOCK_H
+#endif // GRAPHICSITEM_H

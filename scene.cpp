@@ -1,6 +1,6 @@
 #include "scene.h"
 
-#include <block.h>
+#include <graphicsitem.h>
 #include <QAction>
 #include <QGraphicsLineItem>
 #include <QLineF>
@@ -17,9 +17,9 @@ Scene::Scene(QObject *parent)
 {
 
     //test
-    addItem(new Block());
+    addItem(new GraphicsItem());
 
-    Block *secondItem = new Block();
+    GraphicsItem *secondItem = new GraphicsItem();
     qreal x = secondItem->x() + 200;
     secondItem->setX(x);
 
@@ -34,6 +34,9 @@ void Scene::mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent)
     {
         currentLine = new QGraphicsLineItem(QLineF(mouseEvent->scenePos(), mouseEvent->scenePos()));
         addItem(currentLine);
+    }else if (InsertItem == mode)
+    {
+        emit itemInserted(mouseEvent->pos());
     }
 
     //qDebug("Wcisnieto\n");
@@ -69,8 +72,8 @@ void Scene::mouseReleaseEvent(QGraphicsSceneMouseEvent *mouseEvent)
 
         if(!blocksAtLineStart.isEmpty() && !blocksAtLineFinish.isEmpty() )
         {
-            Block *startBlock = qgraphicsitem_cast<Block *>(blocksAtLineStart.first());
-            Block *finishBlock = qgraphicsitem_cast<Block *>(blocksAtLineFinish.first());
+            GraphicsItem *startBlock = qgraphicsitem_cast<GraphicsItem *>(blocksAtLineStart.first());
+            GraphicsItem *finishBlock = qgraphicsitem_cast<GraphicsItem *>(blocksAtLineFinish.first());
             if(startBlock != finishBlock)
             {
                 int inputIndex = -1;
@@ -96,11 +99,10 @@ void Scene::mouseReleaseEvent(QGraphicsSceneMouseEvent *mouseEvent)
     QGraphicsScene::mouseReleaseEvent(mouseEvent);
 }
 
-void Scene::modeChanged(QAction *action)
+void Scene::modeChanged(SceneMode mode)
 {
-    qDebug("Menu: %s\n", action->text());
-    if( action -> text() == "Move") mode = MoveBlock;
-    else mode = InsertConnection;
+    qDebug()<<"Scene::modeChanged";
+    this->mode = mode;
 }
 
 void Scene::filterBlockItems(QList<QGraphicsItem *> &list)
@@ -109,7 +111,7 @@ void Scene::filterBlockItems(QList<QGraphicsItem *> &list)
     {
        for(int i = 0; i < list.size(); ++i)
        {
-           if(list[i]->type() != Block::Type)
+           if(list[i]->type() != GraphicsItem::Type)
            {
                list.removeAt(i);
                --i;

@@ -1,4 +1,4 @@
-#include "block.h"
+#include "graphicsitem.h"
 
 #include <QPointF>
 #include <QRectF>
@@ -6,9 +6,9 @@
 
 #include <QDebug>
 
-const qreal Block::SIZE = 100;
+const qreal GraphicsItem::SIZE = 100;
 
-Block::Block()
+GraphicsItem::GraphicsItem()
 {
     setBase();
     setInputs(3);
@@ -18,14 +18,14 @@ Block::Block()
     setFlag(QGraphicsItem::ItemIsSelectable, true);
 }
 
-void Block::setBase()
+void GraphicsItem::setBase()
 {
     base = std::make_shared<QGraphicsRectItem>();
     base->setRect( getBaseRect() );
     addToGroup(base.get());
 }
 
-void Block::setInputs(int number)
+void GraphicsItem::setInputs(int number)
 {
     qreal step = SIZE / (number + 1);
     qreal startXYCoordinate = -SIZE / 2;
@@ -45,7 +45,7 @@ void Block::setInputs(int number)
     }
 }
 
-void Block::setOutput()
+void GraphicsItem::setOutput()
 {
     qreal centerX = SIZE / 2;
     qreal centerY = 0;
@@ -56,13 +56,13 @@ void Block::setOutput()
 }
 
 
-QRectF Block::getBaseRect() const
+QRectF GraphicsItem::getBaseRect() const
 {
     auto half = SIZE / 2;
     return QRectF( QPointF(-half,half), QPointF(half,-half) );
 }
 
-int Block::whichInputCanBeConnected(QPointF point)
+int GraphicsItem::whichInputCanBeConnected(QPointF point)
 {
     int whichCanConnect = -1;
     for( int i = 0; i < inputs.size(); ++i )
@@ -79,7 +79,7 @@ int Block::whichInputCanBeConnected(QPointF point)
 
 }
 
-bool Block::canOutputBeConnected(QPointF point)
+bool GraphicsItem::canOutputBeConnected(QPointF point)
 {
     QPointF mappedPoint = mapFromScene(point);
     return output->boundingRect().contains(mappedPoint) && !output->isConnection();

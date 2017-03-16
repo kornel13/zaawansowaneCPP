@@ -5,6 +5,12 @@
 #include <QAction>
 
 #include "scene.h"
+#include "controller.h"
+#include "itembuttonwidget.h"
+#include "mapper.h"
+
+#include <QDebug>
+#include "itemfactory.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -20,10 +26,29 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->centralWidget->setMouseTracking(true);
     //ui->widget->setMouseTracking(true);
 
+    QAction* ghostAction = new QAction(this);
+    ghostAction->setVisible(false);
+
     actionGroup = new QActionGroup(this);
     actionGroup->addAction(ui->actionAddLine);
     actionGroup->addAction(ui->actionMove);
+    actionGroup->addAction(ghostAction);
     actionGroup->setExclusive(true);
+
+    Mapper::actionToEnumMap[ui->actionAddLine] = Insert;
+    Mapper::actionToEnumMap[ui->actionMove] = Move;
+
+    controller = new Controller(scene, this);
+    itemButtonWidget = new ItemButtonWidget(this);
+
+    ItemFactory* f = nullptr;
+    foreach (f, controller->getItemFactory()) {
+        itemButtonWidget->addItemFactory(f);
+    }
+
+    QVBoxLayout *groupBoxLayout = new QVBoxLayout();
+    groupBoxLayout->addWidget(itemButtonWidget);
+    ui->groupBox->setLayout(groupBoxLayout);
 
     setSignalsSlots();
 
@@ -32,7 +57,18 @@ MainWindow::MainWindow(QWidget *parent) :
 void MainWindow::setSignalsSlots()
 {
     connect(actionGroup, SIGNAL(triggered(QAction*)),
-            scene, SLOT(modeChanged(QAction*)));
+            controller, SLOT(actionChanged(QAction*)));
+
+    connect(itemButtonWidget->getButtonGroup(), SIGNAL(buttonClicked(int)),
+            controller, SLOT(buttonChanged(int)));
+
+    connect(controller, SIGNAL(sceneModeChanged(SceneMode)),
+            scene, SLOT(modeChanged(SceneMode)));
+
+    connect(scene, SIGNAL(itemInserted(QPointF)),
+            controller, SLOT(itemInserted(QPointF)));
+
+
 }
 
 MainWindow::~MainWindow()

@@ -26,16 +26,39 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += main.cpp\
         mainwindow.cpp \
     scene.cpp \
-    block.cpp \
     connection.cpp \
     inputelement.cpp \
-    outputelement.cpp
+    outputelement.cpp \
+    graphicsitem.cpp \
+    data.cpp \
+    ioelement.cpp \
+    addition.cpp \
+    itemfactory.cpp \
+    itembuttonwidget.cpp \
+    controller.cpp \
+    additemfactory.cpp \
+    mapper.cpp \
+    subtractitemfactory.cpp \
+    sumexpression.cpp \
+    differenceexpression.cpp
 
 HEADERS  += mainwindow.h \
     scene.h \
-    block.h \
     connection.h \
     inputelement.h \
-    outputelement.h
+    outputelement.h \
+    graphicsitem.h \
+    iexpression.h \
+    data.h \
+    ioelement.h \
+    addition.h \
+    itemfactory.h \
+    itembuttonwidget.h \
+    controller.h \
+    additemfactory.h \
+    mapper.h \
+    subtractitemfactory.h \
+    sumexpression.h \
+    differenceexpression.h
 
 FORMS    += mainwindow.ui
