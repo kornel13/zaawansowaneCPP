@@ -3,10 +3,13 @@
 
 #include <QObject>
 #include <QPointF>
+
+#include  "iexpression.h"
 #include "scene.h"
 
 class ItemFactory;
 class QActionGroup;
+
 
 class Controller: public QObject
 {
@@ -17,11 +20,15 @@ public:
 
 signals:
     void sceneModeChanged(SceneMode mode);
+    void setOutputText(QString);
 
 public slots:
     void actionChanged(QAction* action);
     void buttonChanged(int id);
     void itemInserted(QPointF position);
+    void  calculate(bool);
+    void connectionInserted(GraphicsItem *start, unsigned outId,
+                            GraphicsItem *end, unsigned inId);
 
 private:
     void addItemFactory(ItemFactory* itemFactory);
@@ -30,6 +37,7 @@ private:
     QActionGroup *actionGroup;
     QList<ItemFactory*> itemFactoryList;
     ItemFactory* selectedItemFactory;
+    IExpression* outputExpression;
 };
 
 #endif // CONTROLLER_H

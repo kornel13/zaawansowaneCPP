@@ -5,6 +5,7 @@
 
 class QAction;
 class QGraphicsLineItem;
+class GraphicsItem;
 
 enum SceneMode { MoveBlock, InsertConnection, InsertItem };
 
@@ -27,6 +28,8 @@ private:
 
 signals:
     void itemInserted(QPointF position);
+    void connectionInserted(GraphicsItem* start, unsigned outId,
+                            GraphicsItem* end, unsigned inId);
 
 public slots:
     void modeChanged(SceneMode mode);

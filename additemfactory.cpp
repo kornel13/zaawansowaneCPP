@@ -9,5 +9,5 @@ AddItemFactory::AddItemFactory(int id, QObject *parent)
 
 Item AddItemFactory::createItemObject(QMap<QString, QString> config)
 {
-    return Item(new GraphicsItem(), new SumExpression() );
+    return Item(new GraphicsItem(2,1), new SumExpression(2) );
 }

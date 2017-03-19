@@ -36,7 +36,7 @@
     </item>
     <item>
      <widget class="QWidget" name="widget" native="true">
-      <layout class="QVBoxLayout" name="verticalLayout" stretch="4,1">
+      <layout class="QVBoxLayout" name="verticalLayout" stretch="4,0">
        <item>
         <widget class="QGraphicsView" name="graphicsView"/>
        </item>
@@ -91,6 +91,8 @@
    </attribute>
    <addaction name="actionMove"/>
    <addaction name="actionAddLine"/>
+   <addaction name="separator"/>
+   <addaction name="actionRun"/>
   </widget>
   <action name="actionMove">
    <property name="checkable">
@@ -112,6 +114,11 @@
    </property>
    <property name="toolTip">
     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Allows to add connection between elements&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </action>
+  <action name="actionRun">
+   <property name="text">
+    <string>Run</string>
    </property>
   </action>
  </widget>

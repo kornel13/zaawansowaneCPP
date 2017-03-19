@@ -1,12 +1,15 @@
 #include "sumexpression.h"
+#include <QDebug>
 
-void SumExpression::addExpression(IExpression *expression)
+SumExpression::SumExpression(unsigned inputsNumber)
+    : ArithmeticExpression(inputsNumber)
 {
-    inputs.append(expression);
 }
 
 Data SumExpression::evaluate()
 {
+    qDebug()<<"SumExpression::evaluate jestem\n";
+
     Data result = Data();
     IExpression *expression = nullptr;
     foreach (expression, inputs) {
@@ -14,3 +17,5 @@ Data SumExpression::evaluate()
     }
     return result;
 }
+
+

@@ -1,20 +1,15 @@
 #ifndef SUMEXPRESSION_H
 #define SUMEXPRESSION_H
 
-#include "iexpression.h"
+#include "arithmeticexpression.h"
 
 #include <QList>
 
-class SumExpression : public IExpression
+class SumExpression : public ArithmeticExpression
 {
 public:
-    SumExpression() = default;
-    Data evaluate();
-
-    void addExpression(IExpression *expression);
-
-private:
-    QList<IExpression*> inputs;
+    SumExpression(unsigned inputsNumber);
+    Data evaluate() override;
 };
 
 #endif // SUMEXPRESSION_H

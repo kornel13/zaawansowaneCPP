@@ -40,7 +40,12 @@ SOURCES += main.cpp\
     mapper.cpp \
     subtractitemfactory.cpp \
     sumexpression.cpp \
-    differenceexpression.cpp
+    differenceexpression.cpp \
+    inputexpression.cpp \
+    outputexpression.cpp \
+    inputitemfactory.cpp \
+    outputitemfactory.cpp \
+    arithmeticexpression.cpp
 
 HEADERS  += mainwindow.h \
     scene.h \
@@ -59,6 +64,11 @@ HEADERS  += mainwindow.h \
     mapper.h \
     subtractitemfactory.h \
     sumexpression.h \
-    differenceexpression.h
+    differenceexpression.h \
+    inputexpression.h \
+    outputexpression.h \
+    inputitemfactory.h \
+    outputitemfactory.h \
+    arithmeticexpression.h
 
 FORMS    += mainwindow.ui

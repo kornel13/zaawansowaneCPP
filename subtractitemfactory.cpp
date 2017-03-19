@@ -10,5 +10,5 @@ SubtractItemFactory::SubtractItemFactory(int id, QObject *parent)
 
 Item SubtractItemFactory::createItemObject(QMap<QString, QString> config)
 {
-    return Item(new GraphicsItem(), new DifferenceExpression() );
+    return Item(new GraphicsItem(2,1), new DifferenceExpression(2) );
 }

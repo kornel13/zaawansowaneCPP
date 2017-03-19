@@ -69,7 +69,7 @@ void MainWindow::setSignalsSlots()
             controller, SLOT(itemInserted(QPointF)));
 
     connect(scene, SIGNAL(connectionInserted(GraphicsItem*,uint,GraphicsItem*,uint)),
-            controller, SLOT(connectionInserted(GraphicsItem*,uint,GraphicsItem*,uint)));
+            controller, SLOT(connectionInserted(GraphicsItem*,uint,GraphicsItem*,uint))) ;
 
     connect(ui->actionRun, SIGNAL(triggered(bool)),
             controller, SLOT(calculate(bool)));

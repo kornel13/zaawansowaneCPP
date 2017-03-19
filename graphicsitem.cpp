@@ -8,11 +8,14 @@
 
 const qreal GraphicsItem::SIZE = 100;
 
-GraphicsItem::GraphicsItem()
+GraphicsItem::GraphicsItem(unsigned inputsNumber, unsigned outputNumber)
 {
     setBase();
-    setInputs(3);
-    setOutput();
+    Q_ASSERT(inputsNumber <= 5);
+    Q_ASSERT(outputNumber <= 1);
+
+    setInputs(inputsNumber);
+    if(outputNumber) setOutput();
 
     setFlag(QGraphicsItem::ItemIsMovable, true);
     setFlag(QGraphicsItem::ItemIsSelectable, true);

@@ -1,8 +1,8 @@
 #include "differenceexpression.h"
 
-void DifferenceExpression::addExpression(IExpression *expression)
+DifferenceExpression::DifferenceExpression(unsigned inputsNumber)
+    : ArithmeticExpression(inputsNumber)
 {
-    inputs.append(expression);
 }
 
 Data DifferenceExpression::evaluate()

@@ -7,7 +7,10 @@ typedef double Data;
 
 struct IExpression
 {
-    Data evaluate() { return Data(); }/*8= 0;*/
+    virtual Data evaluate() = 0;
+    virtual void addExpression(IExpression *expression, unsigned index) = 0;
+    virtual void removeExpression(unsigned index) = 0;
+    virtual bool isOutput() { return false; }
 };
 
 #endif // IEXPRESSION_H

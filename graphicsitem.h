@@ -16,7 +16,7 @@ public /*enumerations*/:
     enum { Type = UserType + 10 };
 
 public:
-    GraphicsItem();
+    GraphicsItem(unsigned inputsNumber, unsigned outputNumber);
     int whichInputCanBeConnected(QPointF point);
     bool canOutputBeConnected(QPointF point);
 

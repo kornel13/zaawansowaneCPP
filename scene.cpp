@@ -17,7 +17,7 @@ Scene::Scene(QObject *parent)
 {
 
     //test
-    addItem(new GraphicsItem());
+    addItem(new GraphicsItem(3,1));
 
 
 }
@@ -81,6 +81,7 @@ void Scene::mouseReleaseEvent(QGraphicsSceneMouseEvent *mouseEvent)
                     connection->setZValue(-200);
                     addItem(connection);
                     connection->updatePosition();
+                    emit connectionInserted(startBlock, 0, finishBlock, (unsigned)inputIndex);
                 }
             }
         }
