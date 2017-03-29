@@ -145,6 +145,16 @@ int GraphicsItem::getInputIndex(Connection* connection)
     return index;
 }
 
+void setTexts(QString className, QString itemName)
+{
+
+}
+
+void setIcon()
+{
+
+}
+
 
 
 

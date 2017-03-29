@@ -9,6 +9,7 @@
 #include "inputelement.h"
 #include "outputelement.h"
 
+typedef QGraphicsTextItem Icon;
 
 class GraphicsItem : public QGraphicsItemGroup
 {
@@ -44,15 +45,23 @@ private:
     QVector< std::shared_ptr<InputElement> > inputs;
     std::shared_ptr<OutputElement> output;
     std::shared_ptr<QGraphicsRectItem> base;
-    std::shared_ptr<QGraphicsTextItem> text;
+
+    std::shared_ptr<QGraphicsTextItem> className;
+    std::shared_ptr<QGraphicsTextItem> itemName;
+    std::shared_ptr<Icon> icon;
+
+
 
     void setBase();
     void setInputs(int number);
     void setOutput();
-    void setText(QString name);
+    void setTexts(QString className, QString itemName);
+    void setIcon();
 
     QRectF getBaseRect() const;
     static const qreal SIZE;
+
+
 };
 
 #endif // GRAPHICSITEM_H

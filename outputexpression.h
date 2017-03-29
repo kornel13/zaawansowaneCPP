@@ -6,11 +6,15 @@
 class OutputExpression : public IExpression
 {
 public:
-    OutputExpression() = default;
+    OutputExpression();
     Data evaluate();
     void addExpression(IExpression *expression, unsigned);
-    void removeExpression(unsigned index);
+    void removeExpression(unsigned);
+    void removeExpression(IExpression *);
+    void removeAllExpressions();
     bool isOutput() override;
+    void addOutput(IExpression *expression);
+    void removeOutput();
 
 private:
     IExpression *input;

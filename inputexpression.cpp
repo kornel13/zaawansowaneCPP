@@ -2,7 +2,7 @@
 #include <QDebug>
 
 InputExpression::InputExpression(Data value)
-    : value(value)
+    : value(value), output(nullptr)
 {
 }
 
@@ -18,4 +18,24 @@ void InputExpression::addExpression(IExpression *, unsigned)
 
 void InputExpression::removeExpression(unsigned)
 {
+}
+
+void InputExpression::removeExpression(IExpression *expression)
+{
+
+}
+
+void InputExpression::removeAllExpressions()
+{
+    if(output) output->removeExpression(this);
+}
+
+void InputExpression::addOutput(IExpression *expression)
+{
+    output = expression;
+}
+
+void InputExpression::removeOutput()
+{
+    output = nullptr;
 }

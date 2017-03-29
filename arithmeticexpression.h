@@ -11,9 +11,13 @@ public:
     Data evaluate() = 0;
     void addExpression(IExpression *expression, unsigned index);
     void removeExpression(unsigned index);
+    void removeExpression(IExpression *expression);
+    void removeAllExpressions();
+    virtual void addOutput(IExpression *expression);
+    virtual void removeOutput();
 
-protected:
     QVector<IExpression*> inputs;
+    IExpression* output;
 };
 
 #endif // ARITHMETICEXPRESSION_H

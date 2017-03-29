@@ -76,6 +76,10 @@ void Controller::itemToDelete()
         auto connections = graphicsItem->getAllConnections();
         graphicsItem->removeAllConnections();
 
+        IExpression* expression = Mapper::graphicsToExpessionMap[graphicsItem];
+        expression->removeAllExpressions();
+        delete expression;
+
         Connection* con;
         foreach(con, connections)
         {
@@ -83,6 +87,7 @@ void Controller::itemToDelete()
             delete con;
         }
         scene->removeItem(graphicsItem);
+        delete graphicsItem;
     }
 
 }

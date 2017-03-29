@@ -10,8 +10,13 @@ public:
     Data evaluate();
     void addExpression(IExpression*, unsigned);
     void removeExpression(unsigned);
+    void removeExpression(IExpression *expression);
+    void removeAllExpressions();
+    void addOutput(IExpression *expression);
+    void removeOutput();
 
 private:
+    IExpression *output;
     Data value;
 };
 
