@@ -13,13 +13,8 @@
 
 
 Scene::Scene(QObject *parent)
-    : QGraphicsScene(parent)
+    : QGraphicsScene(parent), currentConfig(QPair<bool, ItemConfig>(false, ItemConfig() ))
 {
-
-    //test
-    addItem(new GraphicsItem(3,1));
-
-
 }
 
 void Scene::mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent)
@@ -31,7 +26,11 @@ void Scene::mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent)
         addItem(currentLine);
     }else if (InsertItem == mode)
     {
-        emit itemInserted(mouseEvent->scenePos());
+        if(currentConfig.first)
+        {
+            emit itemInserted(mouseEvent->scenePos(), currentConfig.second);
+            currentConfig.first = false;
+        }
     }
 
     //qDebug("Wcisnieto\n");
@@ -100,6 +99,13 @@ void Scene::modeChanged(SceneMode mode)
     qDebug()<<"Scene::modeChanged";
     this->mode = mode;
 }
+
+void Scene::appliedConfig(ItemConfig config)
+{
+    currentConfig.second = config;
+    currentConfig.first = true;
+}
+
 
 void Scene::filterBlockItems(QList<QGraphicsItem *> &list)
 {

@@ -7,7 +7,7 @@ class OutputItemFactory : public ItemFactory
 {
 public:
     OutputItemFactory(int id, QObject *parent = nullptr);
-    virtual Item createItemObject(QMap<QString, QString> config);
+    virtual Item createItemObject(ItemConfig config);
 
 };
 

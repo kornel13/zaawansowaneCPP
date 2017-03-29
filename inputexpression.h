@@ -6,7 +6,7 @@
 class InputExpression : public IExpression
 {
 public:
-    InputExpression() = default;
+    InputExpression(Data value);
     Data evaluate();
     void addExpression(IExpression*, unsigned);
     void removeExpression(unsigned);

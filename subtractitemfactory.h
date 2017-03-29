@@ -7,7 +7,7 @@ class SubtractItemFactory : public ItemFactory
 {
 public:
     SubtractItemFactory(int id, QObject *parent = nullptr);
-    virtual Item createItemObject(QMap<QString, QString> config);
+    virtual Item createItemObject(ItemConfig config);
 };
 
 #endif // SUBTRACTITEMFACTORY_H

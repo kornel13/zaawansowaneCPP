@@ -6,6 +6,7 @@
 #include "outputitemfactory.h"
 #include "graphicsitem.h"
 #include "iexpression.h"
+#include "itemattributesdialog.h"
 
 #include <QDebug>
 Controller::Controller(Scene *scene, QObject *parent)
@@ -24,9 +25,15 @@ QList<ItemFactory*> Controller::getItemFactory()
     return itemFactoryList;
 }
 
+QHash<int, ItemAttributesDialog*>* Controller::getItemAttributesDialogs()
+{
+    return &itemAttributesDialogHash;
+}
+
 void Controller::addItemFactory(ItemFactory* itemFactory)
 {
     Mapper::idToItemFactoryMap[itemFactory->getId()] = itemFactory;
+    itemAttributesDialogHash[itemFactory->getId()] = new ItemAttributesDialog(itemFactory->getDefaultConfig(), (QWidget*)parent());
     itemFactoryList.append(itemFactory);
 }
 
@@ -38,21 +45,20 @@ void Controller::actionChanged(QAction* action)
     emit sceneModeChanged(mode);
 }
 
-void Controller::buttonChanged(int id)
+void Controller::itemToAdd(int id, ItemConfig config)
 {
     qDebug()<<"klik";
     selectedItemFactory = Mapper::idToItemFactoryMap[id];
+
+    emit appliedConfig(config);
     emit sceneModeChanged(InsertItem);
 }
 
-void Controller::itemInserted(QPointF position)
+void Controller::itemInserted(QPointF position, ItemConfig config)
 {
-    qDebug()<<"itemInserted - 1";
     if(selectedItemFactory)
     {
-        qDebug()<<"itemInserted - 2";
-        QMap<QString,QString> debug;
-        Item item = selectedItemFactory->createItemObject(debug);
+        Item item = selectedItemFactory->createItemObject(config);
         if(item.second->isOutput()) outputExpression = item.second;
         Mapper::graphicsToExpessionMap[item.first] = item.second;
         scene->addItem(item.first);
@@ -74,7 +80,7 @@ void Controller::connectionInserted(GraphicsItem* start, unsigned,
         if(outputExpression)
         {
             Data result = outputExpression->evaluate();
-            QString convertedResult = QString::number(result);
+            QString convertedResult = result.toString();
             emit setOutputText(QString("Result is ") + convertedResult);
 
         }else

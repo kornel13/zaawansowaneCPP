@@ -8,6 +8,8 @@
 #include <QObject>
 #include <QPair>
 
+#include"itemconfig.h"
+
 class IExpression;
 class GraphicsItem;
 
@@ -17,27 +19,16 @@ class ItemFactory : public QObject
 {
 public:
     ItemFactory(QString name, int id, QObject *parent = nullptr);
-    virtual Item createItemObject(QMap<QString, QString> config) = 0;
+    virtual Item createItemObject(ItemConfig config) = 0;
 
     int getId();
-    QIcon getIcon();
-    QString getName();
-
-protected:
-    void setIcon(QIcon& icon);
+    ItemConfig getDefaultConfig() { return defaultConfig; }
 
 private:
-    void AddCommonAttributes();
-
-    QList<QString> attributes;
-    QIcon icon;
-    QString name;
     int id;
 
-
-
-
-
+protected:
+    ItemConfig defaultConfig;
 };
 
 #endif // ITEM_H

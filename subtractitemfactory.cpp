@@ -5,10 +5,11 @@
 SubtractItemFactory::SubtractItemFactory(int id, QObject *parent)
     : ItemFactory(QString("Difference Block"), id, parent)
 {
-
+    defaultConfig.addValue("Inputs number","2",OtherType,"^[1-4]$");
 }
 
-Item SubtractItemFactory::createItemObject(QMap<QString, QString> config)
+Item SubtractItemFactory::createItemObject(ItemConfig config)
 {
-    return Item(new GraphicsItem(2,1), new DifferenceExpression(2) );
+    int inputs = config.getValue("Inputs number").toInt();
+    return Item(new GraphicsItem(inputs,1), new DifferenceExpression(inputs) );
 }

@@ -30,7 +30,6 @@ SOURCES += main.cpp\
     inputelement.cpp \
     outputelement.cpp \
     graphicsitem.cpp \
-    data.cpp \
     ioelement.cpp \
     addition.cpp \
     itemfactory.cpp \
@@ -45,7 +44,9 @@ SOURCES += main.cpp\
     outputexpression.cpp \
     inputitemfactory.cpp \
     outputitemfactory.cpp \
-    arithmeticexpression.cpp
+    arithmeticexpression.cpp \
+    itemattributesdialog.cpp \
+    itemconfig.cpp
 
 HEADERS  += mainwindow.h \
     scene.h \
@@ -69,6 +70,8 @@ HEADERS  += mainwindow.h \
     outputexpression.h \
     inputitemfactory.h \
     outputitemfactory.h \
-    arithmeticexpression.h
+    arithmeticexpression.h \
+    itemattributesdialog.h \
+    itemconfig.h
 
 FORMS    += mainwindow.ui

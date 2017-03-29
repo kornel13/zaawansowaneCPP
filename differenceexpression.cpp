@@ -7,7 +7,7 @@ DifferenceExpression::DifferenceExpression(unsigned inputsNumber)
 
 Data DifferenceExpression::evaluate()
 {
-    Data result = Data();
+    Data result = Data(0);
     IExpression *expression = nullptr;
     foreach (expression, inputs) {
         result -= expression->evaluate();

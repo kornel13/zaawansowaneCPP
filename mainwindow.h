@@ -12,6 +12,7 @@ class MainWindow;
 class Scene;
 class Controller;
 class ItemButtonWidget;
+class ItemAttributesDialog;
 
 class MainWindow : public QMainWindow
 {

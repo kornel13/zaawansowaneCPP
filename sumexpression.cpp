@@ -10,7 +10,7 @@ Data SumExpression::evaluate()
 {
     qDebug()<<"SumExpression::evaluate jestem\n";
 
-    Data result = Data();
+    Data result = Data(0);
     IExpression *expression = nullptr;
     foreach (expression, inputs) {
         result += expression->evaluate();

@@ -7,7 +7,7 @@ class InputItemFactory : public ItemFactory
 {
 public:
     InputItemFactory(int id, QObject *parent = nullptr);
-    virtual Item createItemObject(QMap<QString, QString> config);
+    virtual Item createItemObject(ItemConfig config);
 };
 
 #endif // INPUTITEMFACTORY_H

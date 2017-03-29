@@ -3,13 +3,15 @@
 
 #include <QObject>
 #include <QPointF>
+#include <QHash>
 
 #include  "iexpression.h"
 #include "scene.h"
+#include "itemconfig.h"
+#include "itemattributesdialog.h"
 
 class ItemFactory;
 class QActionGroup;
-
 
 class Controller: public QObject
 {
@@ -17,15 +19,17 @@ class Controller: public QObject
 public:
     Controller(Scene *scene, QObject *parent = nullptr);
     QList<ItemFactory*> getItemFactory();
+    QHash<int, ItemAttributesDialog *> *getItemAttributesDialogs();
 
 signals:
     void sceneModeChanged(SceneMode mode);
     void setOutputText(QString);
+    void appliedConfig(ItemConfig);
 
 public slots:
     void actionChanged(QAction* action);
-    void buttonChanged(int id);
-    void itemInserted(QPointF position);
+    void itemToAdd(int id, ItemConfig config);
+    void itemInserted(QPointF position, ItemConfig config);
     void  calculate(bool);
     void connectionInserted(GraphicsItem *start, unsigned outId,
                             GraphicsItem *end, unsigned inId);
@@ -36,6 +40,7 @@ private:
     Scene *scene;
     QActionGroup *actionGroup;
     QList<ItemFactory*> itemFactoryList;
+    QHash<int, ItemAttributesDialog*> itemAttributesDialogHash;
     ItemFactory* selectedItemFactory;
     IExpression* outputExpression;
 };

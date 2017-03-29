@@ -1,9 +1,7 @@
 #ifndef IEXPRESSION_H
 #define IEXPRESSION_H
 
-//#include "data.h"
-
-typedef double Data;
+#include "data.h"
 
 struct IExpression
 {

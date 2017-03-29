@@ -8,7 +8,7 @@ class AddItemFactory : public ItemFactory
 {
 public:
     AddItemFactory(int id, QObject *parent = nullptr);
-    virtual Item createItemObject(QMap<QString, QString> config);
+    virtual Item createItemObject(ItemConfig config);
 };
 
 #endif // ADDITEMFACTORY_H

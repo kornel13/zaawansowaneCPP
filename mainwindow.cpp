@@ -11,6 +11,9 @@
 
 #include <QDebug>
 #include "itemfactory.h"
+#include "itemconfig.h"
+
+#include "itemattributesdialog.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -39,7 +42,7 @@ MainWindow::MainWindow(QWidget *parent) :
     Mapper::actionToEnumMap[ui->actionMove] = Move;
 
     controller = new Controller(scene, this);
-    itemButtonWidget = new ItemButtonWidget(this);
+    itemButtonWidget = new ItemButtonWidget(controller->getItemAttributesDialogs(), this);
 
     ItemFactory* f = nullptr;
     foreach (f, controller->getItemFactory()) {
@@ -51,7 +54,6 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->groupBox->setLayout(groupBoxLayout);
 
     setSignalsSlots();
-
 }
 
 void MainWindow::setSignalsSlots()
@@ -59,25 +61,26 @@ void MainWindow::setSignalsSlots()
     connect(actionGroup, SIGNAL(triggered(QAction*)),
             controller, SLOT(actionChanged(QAction*)));
 
-    connect(itemButtonWidget->getButtonGroup(), SIGNAL(buttonClicked(int)),
-            controller, SLOT(buttonChanged(int)));
+    connect(itemButtonWidget, SIGNAL(itemToAdd(int, ItemConfig)),
+            controller, SLOT(itemToAdd(int, ItemConfig)));
 
     connect(controller, SIGNAL(sceneModeChanged(SceneMode)),
             scene, SLOT(modeChanged(SceneMode)));
 
-    connect(scene, SIGNAL(itemInserted(QPointF)),
-            controller, SLOT(itemInserted(QPointF)));
+    connect(controller, SIGNAL(appliedConfig(ItemConfig)),
+            scene, SLOT(appliedConfig(ItemConfig)));
+
+    connect(scene, SIGNAL(itemInserted(QPointF, ItemConfig)),
+            controller, SLOT(itemInserted(QPointF, ItemConfig)));
 
     connect(scene, SIGNAL(connectionInserted(GraphicsItem*,uint,GraphicsItem*,uint)),
-            controller, SLOT(connectionInserted(GraphicsItem*,uint,GraphicsItem*,uint)));
+            controller, SLOT(connectionInserted(GraphicsItem*,uint,GraphicsItem*,uint))) ;
 
     connect(ui->actionRun, SIGNAL(triggered(bool)),
             controller, SLOT(calculate(bool)));
 
     connect(controller, SIGNAL(setOutputText(QString)),
             ui->textBrowser, SLOT(append(QString)));
-
-
 }
 
 MainWindow::~MainWindow()

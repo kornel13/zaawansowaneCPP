@@ -1,10 +1,15 @@
 #include "inputexpression.h"
 #include <QDebug>
 
+InputExpression::InputExpression(Data value)
+    : value(value)
+{
+}
+
 Data InputExpression::evaluate()
 {
     qDebug()<<"InputExpression::evaluate jestem\n";
-    return 17.0;
+    return value;
 }
 
 void InputExpression::addExpression(IExpression *, unsigned)

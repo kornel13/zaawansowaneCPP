@@ -2,6 +2,8 @@
 #define SCENE_H
 
 #include <QGraphicsScene>
+#include <QPair>
+#include "itemconfig.h"
 
 class QAction;
 class QGraphicsLineItem;
@@ -23,16 +25,18 @@ protected:
 private:
     SceneMode mode;
     QGraphicsLineItem *currentLine;
+    QPair<bool, ItemConfig> currentConfig;
 
     void filterBlockItems(QList<QGraphicsItem *> &list);
 
 signals:
-    void itemInserted(QPointF position);
+    void itemInserted(QPointF position, ItemConfig config);
     void connectionInserted(GraphicsItem* start, unsigned outId,
                             GraphicsItem* end, unsigned inId);
 
 public slots:
     void modeChanged(SceneMode mode);
+    void appliedConfig(ItemConfig config);
 };
 
 #endif // SCENE_H
