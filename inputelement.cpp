@@ -26,7 +26,7 @@ void InputElement::addConnection(Connection* connection)
 
 void InputElement::removeConnection(Connection* connection)
 {
-    connection = nullptr;
+    this->connection = nullptr;
 }
 
 QPointF InputElement::getPosition()

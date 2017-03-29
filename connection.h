@@ -18,6 +18,8 @@ public:
     QRectF boundingRect() const override;
     void updatePosition();
     int type() const override { return Type; }
+    OutputElement* getStart() { return start; }
+    InputElement* getFinish() { return finish; }
 
 protected:
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = 0) override;

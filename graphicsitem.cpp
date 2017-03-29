@@ -85,8 +85,39 @@ int GraphicsItem::whichInputCanBeConnected(QPointF point)
 bool GraphicsItem::canOutputBeConnected(QPointF point)
 {
     QPointF mappedPoint = mapFromScene(point);
+    qDebug() << "Can output be connected "<<!output->isConnection()<<"\n";
     return output->boundingRect().contains(mappedPoint) && !output->isConnection();
 }
+
+void GraphicsItem::removeConnection(Connection* connection)
+{
+    for( int i = 0; i < inputs.size(); ++i )
+        if(inputs[i]->isSpecificConnection(connection))
+        {
+            inputs[i]->removeConnection(connection);
+            qDebug()<<"Removed input con from id "<<i<<"\n";
+            return;
+        }
+    if(output->isSpecificConnection(connection))
+    {
+        output->removeConnection(connection);
+        qDebug()<<"Removed output con\n";
+        return;
+    }
+}
+
+int GraphicsItem::getInputIndex(Connection* connection)
+{
+    int index = -1;
+    for( int i = 0; i < inputs.size(); ++i )
+        if(inputs[i]->isSpecificConnection(connection))
+        {
+            index = i;
+            break;
+        }
+    return index;
+}
+
 
 
 

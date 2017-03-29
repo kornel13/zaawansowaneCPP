@@ -22,6 +22,10 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
+public slots:
+    void sceneSelectionChanged();
+    void changeModeToMove();
+
 private:
     Ui::MainWindow *ui;
     Scene *scene;

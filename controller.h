@@ -30,6 +30,7 @@ public slots:
     void actionChanged(QAction* action);
     void itemToAdd(int id, ItemConfig config);
     void itemInserted(QPointF position, ItemConfig config);
+    void itemToDelete();
     void  calculate(bool);
     void connectionInserted(GraphicsItem *start, unsigned outId,
                             GraphicsItem *end, unsigned inId);

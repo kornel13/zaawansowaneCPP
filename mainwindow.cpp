@@ -81,6 +81,27 @@ void MainWindow::setSignalsSlots()
 
     connect(controller, SIGNAL(setOutputText(QString)),
             ui->textBrowser, SLOT(append(QString)));
+
+    connect(scene, SIGNAL(selectionChanged()),
+            this, SLOT(sceneSelectionChanged()));
+
+    connect(ui->actionDelete, SIGNAL(triggered(bool)),
+            controller, SLOT(itemToDelete()));
+
+    connect(scene, SIGNAL(itemInserted(QPointF,ItemConfig)),
+            this, SLOT(changeModeToMove()));
+}
+
+void MainWindow::sceneSelectionChanged()
+{
+    bool isItemSelected = ! scene->selectedItems().isEmpty();
+    ui->actionDelete->setEnabled(isItemSelected);
+}
+
+void MainWindow::changeModeToMove()
+{
+    ui->actionMove->setChecked(true);
+    emit controller->sceneModeChanged(MoveBlock);
 }
 
 MainWindow::~MainWindow()

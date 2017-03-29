@@ -14,6 +14,8 @@ public:
     void addConnection(Connection* connection);
     void removeConnection(Connection* connection);
     bool isConnection() { return connection != nullptr; }
+    bool isSpecificConnection(Connection *checked) { return connection == checked; }
+
     QPointF getPosition();
     QPolygonF getPolygon();
 

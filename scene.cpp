@@ -77,6 +77,9 @@ void Scene::mouseReleaseEvent(QGraphicsSceneMouseEvent *mouseEvent)
                     inputIndex = finishBlock->whichInputCanBeConnected(finishPoint);
 
                     Connection *connection = new Connection(startBlock->getOutput(), finishBlock->getInput(inputIndex));
+                    startBlock->getOutput()->addConnection(connection);
+                    finishBlock->getInput(inputIndex)->addConnection(connection);
+
                     connection->setZValue(-200);
                     addItem(connection);
                     connection->updatePosition();

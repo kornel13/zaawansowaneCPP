@@ -1,6 +1,7 @@
 #include "outputelement.h"
 
 #include <QBrush>
+#include <QDebug>
 
 const qreal OutputElement::SIZE = 25;
 
@@ -32,7 +33,10 @@ void OutputElement::addConnection(Connection* connection)
 
 void OutputElement::removeConnection(Connection* connection)
 {
-    connection = nullptr;
+    this->connection = nullptr;
+    qDebug()<<"con to null A: "<< (connection != nullptr) <<"\n";
+    qDebug()<<"con to null B: "<<isConnection()<<"\n";
+
 }
 
 QPointF OutputElement::getPosition()

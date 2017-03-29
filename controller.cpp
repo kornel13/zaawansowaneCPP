@@ -1,4 +1,5 @@
 #include "controller.h"
+#include "connection.h"
 #include "mapper.h"
 #include "additemfactory.h"
 #include "subtractitemfactory.h"
@@ -47,11 +48,34 @@ void Controller::actionChanged(QAction* action)
 
 void Controller::itemToAdd(int id, ItemConfig config)
 {
-    qDebug()<<"klik";
     selectedItemFactory = Mapper::idToItemFactoryMap[id];
 
     emit appliedConfig(config);
     emit sceneModeChanged(InsertItem);
+}
+
+void Controller::itemToDelete()
+{
+    QGraphicsItem* item = scene->selectedItems().first();
+    if(Connection::Type == item->type())
+    {
+        Connection* connection = qgraphicsitem_cast<Connection *>(item);
+        GraphicsItem *startItem = qgraphicsitem_cast<GraphicsItem *>(connection->getStart()->parentItem());
+        GraphicsItem *finishItem = qgraphicsitem_cast<GraphicsItem *>(connection->getFinish()->parentItem());
+
+        int index = finishItem->getInputIndex(connection);
+        startItem->removeConnection(connection);
+        finishItem->removeConnection(connection);
+        scene->removeItem(connection);
+        delete connection;
+
+        IExpression* endExpression = Mapper::graphicsToExpessionMap[finishItem];
+        endExpression->removeExpression(index);
+
+    }else if(GraphicsItem::Type)
+    {
+
+    }
 }
 
 void Controller::itemInserted(QPointF position, ItemConfig config)

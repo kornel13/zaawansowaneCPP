@@ -18,7 +18,9 @@ public /*enumerations*/:
 public:
     GraphicsItem(unsigned inputsNumber, unsigned outputNumber);
     int whichInputCanBeConnected(QPointF point);
+    int getInputIndex(Connection* connection);
     bool canOutputBeConnected(QPointF point);
+    void removeConnection(Connection* connection);
 
     std::shared_ptr<OutputElement> getOutput() const
     {
