@@ -21,6 +21,8 @@ public:
     int getInputIndex(Connection* connection);
     bool canOutputBeConnected(QPointF point);
     void removeConnection(Connection* connection);
+    void removeAllConnections();
+    QList<Connection*> getAllConnections();
 
     std::shared_ptr<OutputElement> getOutput() const
     {

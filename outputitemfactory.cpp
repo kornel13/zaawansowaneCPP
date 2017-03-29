@@ -11,3 +11,9 @@ Item OutputItemFactory::createItemObject(ItemConfig config)
 {
     return Item(new GraphicsItem(1,0), new OutputExpression() );
 }
+
+bool OutputItemFactory::isOutputFactory()
+{
+    return true;
+}
+

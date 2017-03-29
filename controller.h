@@ -25,6 +25,7 @@ signals:
     void sceneModeChanged(SceneMode mode);
     void setOutputText(QString);
     void appliedConfig(ItemConfig);
+    void enableOutput(bool enable);
 
 public slots:
     void actionChanged(QAction* action);

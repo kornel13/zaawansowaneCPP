@@ -25,6 +25,7 @@ void ItemButtonWidget::addItemFactory(ItemFactory *itemFactory)
     QToolButton *button = new QToolButton(this);
     button->setText(itemFactory->getDefaultConfig().getClassName());
     button->setCheckable(false);
+    if(itemFactory->isOutputFactory()) outputButtons.append(button);
 
     buttonGroup->addButton(button, itemFactory->getId());
     layout->addWidget(button);
@@ -34,8 +35,6 @@ QButtonGroup* ItemButtonWidget::getButtonGroup()
 {
     return buttonGroup;
 }
-
-
 
 void ItemButtonWidget::setSignalSlots()
 {
@@ -51,4 +50,12 @@ void ItemButtonWidget::showOptions(int id)
         emit itemToAdd(id, config);
     }
 }
+
+void ItemButtonWidget::enableOutput(bool enable)
+{
+    QToolButton* outputButton;
+    foreach(outputButton, outputButtons)
+        outputButton->setEnabled(enable);
+}
+
 

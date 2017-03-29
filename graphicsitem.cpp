@@ -1,4 +1,5 @@
 #include "graphicsitem.h"
+#include "connection.h"
 
 #include <QPointF>
 #include <QRectF>
@@ -105,6 +106,32 @@ void GraphicsItem::removeConnection(Connection* connection)
         return;
     }
 }
+
+QList<Connection*> GraphicsItem::getAllConnections()
+{
+    QList<Connection*> list;
+    for( int i = 0; i < inputs.size(); ++i )
+    {
+        if(inputs[i]->isConnection())
+            list.append(inputs[i]->getConnection());
+    }
+    if(output->isConnection())
+        list.append(output->getConnection());
+
+    return list;
+}
+
+void GraphicsItem::removeAllConnections()
+{
+    for( int i = 0; i < inputs.size(); ++i )
+    {
+        if(inputs[i]->isConnection())
+            inputs[i]->getConnection()->removeItselfFromItems();
+    }
+    if(output->isConnection())
+        output->getConnection()->removeItselfFromItems();
+}
+
 
 int GraphicsItem::getInputIndex(Connection* connection)
 {

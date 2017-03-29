@@ -17,6 +17,8 @@ public:
     Connection(std::shared_ptr<OutputElement> _start, std::shared_ptr<InputElement> _finish);
     QRectF boundingRect() const override;
     void updatePosition();
+    void removeItselfFromItems();
+
     int type() const override { return Type; }
     OutputElement* getStart() { return start; }
     InputElement* getFinish() { return finish; }

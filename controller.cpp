@@ -60,22 +60,31 @@ void Controller::itemToDelete()
     if(Connection::Type == item->type())
     {
         Connection* connection = qgraphicsitem_cast<Connection *>(item);
-        GraphicsItem *startItem = qgraphicsitem_cast<GraphicsItem *>(connection->getStart()->parentItem());
         GraphicsItem *finishItem = qgraphicsitem_cast<GraphicsItem *>(connection->getFinish()->parentItem());
 
         int index = finishItem->getInputIndex(connection);
-        startItem->removeConnection(connection);
-        finishItem->removeConnection(connection);
+        connection->removeItselfFromItems();
         scene->removeItem(connection);
         delete connection;
 
         IExpression* endExpression = Mapper::graphicsToExpessionMap[finishItem];
         endExpression->removeExpression(index);
 
-    }else if(GraphicsItem::Type)
+    }else if(GraphicsItem::Type == item->type())
     {
+        GraphicsItem *graphicsItem = qgraphicsitem_cast<GraphicsItem *>(item);
+        auto connections = graphicsItem->getAllConnections();
+        graphicsItem->removeAllConnections();
 
+        Connection* con;
+        foreach(con, connections)
+        {
+            scene->removeItem(con);
+            delete con;
+        }
+        scene->removeItem(graphicsItem);
     }
+
 }
 
 void Controller::itemInserted(QPointF position, ItemConfig config)
@@ -83,7 +92,11 @@ void Controller::itemInserted(QPointF position, ItemConfig config)
     if(selectedItemFactory)
     {
         Item item = selectedItemFactory->createItemObject(config);
-        if(item.second->isOutput()) outputExpression = item.second;
+        if(item.second->isOutput())
+        {
+            outputExpression = item.second;
+            emit enableOutput(false);
+        }
         Mapper::graphicsToExpessionMap[item.first] = item.second;
         scene->addItem(item.first);
         item.first->setPos(position);

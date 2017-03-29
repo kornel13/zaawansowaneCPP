@@ -12,3 +12,10 @@ int ItemFactory::getId()
     return id;
 }
 
+bool ItemFactory::isOutputFactory()
+{
+    return false;
+}
+
+
+

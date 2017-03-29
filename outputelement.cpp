@@ -44,6 +44,11 @@ QPointF OutputElement::getPosition()
     return mapToScene(pos());
 }
 
+Connection* OutputElement::getConnection()
+{
+    return connection;
+}
+
 QPolygonF OutputElement::getPolygon()
 {
     QPolygonF remappedPolygon;

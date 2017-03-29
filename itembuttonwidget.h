@@ -3,11 +3,13 @@
 
 #include <QWidget>
 #include <QHash>
+#include <QList>
 
 class QButtonGroup;
 class ItemFactory;
 class QVBoxLayout;
 class ItemAttributesDialog;
+class QToolButton;
 
 #include "itemconfig.h"
 
@@ -21,6 +23,7 @@ public:
 
 public slots:
     void showOptions(int id);
+    void enableOutput(bool enable);
 
 signals:
     void itemToAdd(int id, ItemConfig config);
@@ -29,6 +32,7 @@ private:
     QButtonGroup* buttonGroup;
     QVBoxLayout *layout;
     QHash<int, ItemAttributesDialog*> *itemAttributesDialogHash;
+    QList<QToolButton*> outputButtons;
 
     void setSignalSlots();
 };

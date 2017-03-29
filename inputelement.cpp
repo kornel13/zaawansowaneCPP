@@ -35,6 +35,11 @@ QPointF InputElement::getPosition()
     return pos();
 }
 
+Connection* InputElement::getConnection()
+{
+    return connection;
+}
+
 QPolygonF InputElement::getPolygon()
 {
     QPolygonF remappedPolygon;

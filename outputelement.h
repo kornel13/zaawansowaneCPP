@@ -18,6 +18,7 @@ public:
 
     QPointF getPosition();
     QPolygonF getPolygon();
+    Connection* getConnection();
 
 private:
     Connection *connection;

@@ -23,6 +23,12 @@ Connection::Connection(std::shared_ptr<OutputElement> _start, std::shared_ptr<In
     setPen(_pen);
 }
 
+void Connection::removeItselfFromItems()
+{
+   start->removeConnection(this);
+   finish->removeConnection(this);
+}
+
 /* TO REFACTOR - IMPORTANT */
 void Connection::updatePosition()
 {

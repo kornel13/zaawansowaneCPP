@@ -90,6 +90,9 @@ void MainWindow::setSignalsSlots()
 
     connect(scene, SIGNAL(itemInserted(QPointF,ItemConfig)),
             this, SLOT(changeModeToMove()));
+
+    connect(controller, SIGNAL(enableOutput(bool)),
+            itemButtonWidget, SLOT(enableOutput(bool)));
 }
 
 void MainWindow::sceneSelectionChanged()

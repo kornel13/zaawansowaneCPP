@@ -20,6 +20,7 @@ class ItemFactory : public QObject
 public:
     ItemFactory(QString name, int id, QObject *parent = nullptr);
     virtual Item createItemObject(ItemConfig config) = 0;
+    virtual bool isOutputFactory();
 
     int getId();
     ItemConfig getDefaultConfig() { return defaultConfig; }

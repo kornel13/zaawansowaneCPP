@@ -7,7 +7,8 @@ class OutputItemFactory : public ItemFactory
 {
 public:
     OutputItemFactory(int id, QObject *parent = nullptr);
-    virtual Item createItemObject(ItemConfig config);
+    virtual Item createItemObject(ItemConfig config) override;
+    bool isOutputFactory() override;
 
 };
 
