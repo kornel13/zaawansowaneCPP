@@ -8,12 +8,17 @@ SumExpression::SumExpression(unsigned inputsNumber)
 
 Data SumExpression::evaluate()
 {
-    qDebug()<<"SumExpression::evaluate jestem\n";
+    Data tmp = validateInputs();
+    if(!tmp.isValid())
+        return tmp;
 
     Data result = Data(0);
-    IExpression *expression = nullptr;
-    foreach (expression, inputs) {
-        result += expression->evaluate();
+    for (int i=0; i<inputs.size(); ++i)
+    {
+        tmp = inputs[i]->evaluate();
+        if(!result.isValid()) return tmp;
+
+        result += tmp;
     }
     return result;
 }

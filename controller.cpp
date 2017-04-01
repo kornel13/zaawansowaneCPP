@@ -122,8 +122,11 @@ void Controller::connectionInserted(GraphicsItem* start, unsigned,
         if(outputExpression)
         {
             Data result = outputExpression->evaluate();
-            QString convertedResult = result.toString();
-            emit setOutputText(QString("Result is ") + convertedResult);
+            if(result.isValid())
+                emit setOutputText(QString("Result is ") + result.toString());
+            else
+                emit setOutputText(result.getErrMsg());
+
 
         }else
         {

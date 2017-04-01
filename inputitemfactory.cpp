@@ -11,8 +11,12 @@ InputItemFactory::InputItemFactory(int id, QObject *parent)
 
 Item InputItemFactory::createItemObject(ItemConfig config)
 {
-    Data value(0);
-    value.fromString(config.getValue("Value"));
+    auto className = config.getClassName();
+    auto itemName = config.getValue("itemName");
+    auto stringValue = config.getValue("Value");
 
-    return Item(new GraphicsItem(0,1), new InputExpression(value) );
+    Data value(0);
+    value.fromString(stringValue);
+
+    return Item(new GraphicsItem(0,1,className,itemName,stringValue), new InputExpression(value) );
 }

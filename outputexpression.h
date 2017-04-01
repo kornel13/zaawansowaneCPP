@@ -17,6 +17,7 @@ public:
     void removeOutput();
 
 private:
+    Data validateInputs();
     IExpression *input;
 };
 

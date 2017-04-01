@@ -11,10 +11,11 @@ template< typename T = double,
 class GenericData
 {
 public:
-    GenericData(T value): value(value) {}
+    GenericData(T value): value(value), errorMsg("") {}
 
     GenericData<T>& operator = (const GenericData<T>& other)
     {  value = other.value;
+        errorMsg = other.value;
         return *this;
     }
 
@@ -63,8 +64,24 @@ public:
         return true;
     }
 
+    bool isValid()
+    {
+        return errorMsg.isEmpty();
+    }
+
+    void setErrorMsg(QString errorMsg)
+    {
+        this->errorMsg = errorMsg;
+    }
+
+    QString getErrMsg()
+    {
+        return errorMsg;
+    }
+
 private:
      T value;
+     QString errorMsg;
 
 };
 

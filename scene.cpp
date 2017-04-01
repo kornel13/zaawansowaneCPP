@@ -109,7 +109,6 @@ void Scene::appliedConfig(ItemConfig config)
     currentConfig.first = true;
 }
 
-
 void Scene::filterBlockItems(QList<QGraphicsItem *> &list)
 {
     if ( !list.isEmpty())

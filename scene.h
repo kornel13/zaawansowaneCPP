@@ -9,7 +9,7 @@ class QAction;
 class QGraphicsLineItem;
 class GraphicsItem;
 
-enum SceneMode { MoveBlock, InsertConnection, InsertItem };
+enum SceneMode { MoveBlock, InsertConnection, InsertItem, ItemToAdd };
 
 class Scene : public QGraphicsScene
 {

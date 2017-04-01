@@ -41,3 +41,18 @@ void ArithmeticExpression::removeOutput()
 {
     output = nullptr;
 }
+
+Data ArithmeticExpression::validateInputs()
+{
+    Data data(0);;
+    if(output == nullptr) data.setErrorMsg("No output");
+    for(int i=0; i < inputs.size(); ++i)
+    {
+        if(inputs[i] == nullptr)
+        {
+            data.setErrorMsg("No input art");
+            break;
+        }
+    }
+    return data;
+}

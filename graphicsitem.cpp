@@ -4,12 +4,13 @@
 #include <QPointF>
 #include <QRectF>
 #include <QBrush>
+#include <QFont>
 
 #include <QDebug>
 
 const qreal GraphicsItem::SIZE = 100;
 
-GraphicsItem::GraphicsItem(unsigned inputsNumber, unsigned outputNumber)
+GraphicsItem::GraphicsItem(unsigned inputsNumber, unsigned outputNumber, QString className, QString itemName, QString icon)
 {
     setBase();
     Q_ASSERT(inputsNumber <= 5);
@@ -17,6 +18,9 @@ GraphicsItem::GraphicsItem(unsigned inputsNumber, unsigned outputNumber)
 
     setInputs(inputsNumber);
     if(outputNumber) setOutput();
+
+    setClassAndItemNames(className,itemName);
+    setIcon(icon);
 
     setFlag(QGraphicsItem::ItemIsMovable, true);
     setFlag(QGraphicsItem::ItemIsSelectable, true);
@@ -145,14 +149,49 @@ int GraphicsItem::getInputIndex(Connection* connection)
     return index;
 }
 
-void setTexts(QString className, QString itemName)
+void GraphicsItem::setClassAndItemNames(QString className, QString itemName)
 {
+    this->className = std::make_shared<QGraphicsSimpleTextItem>(className,this);
+    QFont font= this->className->font();
+    font.setItalic(true);
+    this->className->setFont(font);
+    centerSubitem(this->className);
+    moveByY(this->className,-SIZE/2 + 10);
+
+    this->itemName = std::make_shared<QGraphicsSimpleTextItem>(itemName,this);
+    font.setItalic(false);
+    font.setBold(true);
+    this->itemName->setFont(font);
+    centerSubitem(this->itemName);
+    moveByY(this->itemName,SIZE/2 - 10);
+
+    addToGroup(this->className.get());
+    addToGroup(this->itemName.get());
 
 }
 
-void setIcon()
+void GraphicsItem::centerSubitem(std::shared_ptr<QGraphicsItem> item)
 {
+    qreal dx = -(item->boundingRect().width())/2;
+    qreal dy = -(item->boundingRect().height())/2;
+    item->moveBy(dx,dy);
+}
 
+
+void GraphicsItem::moveByY(std::shared_ptr<QGraphicsItem> item, qreal dy)
+{
+    item->moveBy(0.0, dy);
+}
+
+void GraphicsItem::setIcon(QString itemString)
+{
+    this->icon = std::make_shared<Icon>(itemString,this);
+    QFont font= this->icon->font();
+    font.setPointSize(SIZE/2);
+    this->icon->setFont(font);
+    centerSubitem(this->icon);
+
+    addToGroup(this->icon.get());
 }
 
 

@@ -10,6 +10,8 @@ AddItemFactory::AddItemFactory(int id, QObject *parent)
 
 Item AddItemFactory::createItemObject(ItemConfig config)
 {
+    auto className = config.getClassName();
+    auto itemName = config.getValue("itemName");
     int inputs = config.getValue("Inputs number").toInt();
-    return Item(new GraphicsItem(inputs,1), new SumExpression(inputs) );
+    return Item(new GraphicsItem(inputs,1,className,itemName,QString("+")), new SumExpression(inputs) );
 }

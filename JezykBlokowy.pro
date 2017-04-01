@@ -46,7 +46,8 @@ SOURCES += main.cpp\
     outputitemfactory.cpp \
     arithmeticexpression.cpp \
     itemattributesdialog.cpp \
-    itemconfig.cpp
+    itemconfig.cpp \
+    itemnameprovider.cpp
 
 HEADERS  += mainwindow.h \
     scene.h \
@@ -72,6 +73,7 @@ HEADERS  += mainwindow.h \
     outputitemfactory.h \
     arithmeticexpression.h \
     itemattributesdialog.h \
-    itemconfig.h
+    itemconfig.h \
+    itemnameprovider.h
 
 FORMS    += mainwindow.ui

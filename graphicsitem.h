@@ -9,7 +9,7 @@
 #include "inputelement.h"
 #include "outputelement.h"
 
-typedef QGraphicsTextItem Icon;
+typedef QGraphicsSimpleTextItem Icon;
 
 class GraphicsItem : public QGraphicsItemGroup
 {
@@ -17,7 +17,7 @@ public /*enumerations*/:
     enum { Type = UserType + 10 };
 
 public:
-    GraphicsItem(unsigned inputsNumber, unsigned outputNumber);
+    GraphicsItem(unsigned inputsNumber, unsigned outputNumber, QString className, QString itemName, QString icon);
     int whichInputCanBeConnected(QPointF point);
     int getInputIndex(Connection* connection);
     bool canOutputBeConnected(QPointF point);
@@ -40,14 +40,15 @@ public:
     }
 
     int type() const override { return Type; }
+    QRectF getBaseRect() const;
 
 private:
     QVector< std::shared_ptr<InputElement> > inputs;
     std::shared_ptr<OutputElement> output;
     std::shared_ptr<QGraphicsRectItem> base;
 
-    std::shared_ptr<QGraphicsTextItem> className;
-    std::shared_ptr<QGraphicsTextItem> itemName;
+    std::shared_ptr<QGraphicsSimpleTextItem> className;
+    std::shared_ptr<QGraphicsSimpleTextItem> itemName;
     std::shared_ptr<Icon> icon;
 
 
@@ -55,10 +56,13 @@ private:
     void setBase();
     void setInputs(int number);
     void setOutput();
-    void setTexts(QString className, QString itemName);
-    void setIcon();
+    void setClassAndItemNames(QString className, QString itemName);
+    void setIcon(QString itemString);
 
-    QRectF getBaseRect() const;
+    void centerSubitem(std::shared_ptr<QGraphicsItem> item);
+    void moveByY(std::shared_ptr<QGraphicsItem> item, qreal dy);
+
+
     static const qreal SIZE;
 
 

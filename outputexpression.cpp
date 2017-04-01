@@ -14,13 +14,13 @@ void OutputExpression::addExpression(IExpression *expression, unsigned)
 
 void OutputExpression::removeExpression(unsigned)
 {
-    input->removeOutput();
+    if(input) input->removeOutput();
     input = nullptr;
 }
 
 void OutputExpression::removeExpression(IExpression *)
 {
-    input->removeOutput();
+    if(input) input->removeOutput();
     input = nullptr;
 }
 
@@ -31,9 +31,18 @@ void OutputExpression::removeAllExpressions()
 
 Data OutputExpression::evaluate()
 {
-#include <QDebug>
-    qDebug()<<"OutputExpression::evaluate jestem\n";
+    Data errorData = validateInputs();
+    if(!errorData.isValid())
+        return errorData;
     return input->evaluate();
+}
+
+Data OutputExpression::validateInputs()
+{
+    Data data(0);
+    if(input == nullptr)
+        data.setErrorMsg("No input");
+    return data;
 }
 
 bool OutputExpression::isOutput()

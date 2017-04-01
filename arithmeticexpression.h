@@ -3,6 +3,7 @@
 
 #include "iexpression.h"
 #include <QVector>
+#include "data.h"
 
 class ArithmeticExpression : public IExpression
 {
@@ -16,6 +17,7 @@ public:
     virtual void addOutput(IExpression *expression);
     virtual void removeOutput();
 
+    Data validateInputs();
     QVector<IExpression*> inputs;
     IExpression* output;
 };

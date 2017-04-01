@@ -9,7 +9,8 @@ OutputItemFactory::OutputItemFactory(int id, QObject *parent)
 
 Item OutputItemFactory::createItemObject(ItemConfig config)
 {
-    return Item(new GraphicsItem(1,0), new OutputExpression() );
+    auto className = config.getClassName();
+    return Item(new GraphicsItem(1,0,className,"CALC END","="), new OutputExpression() );
 }
 
 bool OutputItemFactory::isOutputFactory()
