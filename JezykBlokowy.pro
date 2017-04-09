@@ -26,54 +26,52 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += main.cpp\
         mainwindow.cpp \
     scene.cpp \
-    connection.cpp \
-    inputelement.cpp \
-    outputelement.cpp \
-    graphicsitem.cpp \
-    ioelement.cpp \
-    addition.cpp \
-    itemfactory.cpp \
+    GraphicsItems/connection.cpp \
+    GraphicsItems/inputelement.cpp \
+    GraphicsItems/outputelement.cpp \
+    GraphicsItems/graphicsitem.cpp \
+    Factories/itemfactory.cpp \
     itembuttonwidget.cpp \
     controller.cpp \
-    additemfactory.cpp \
-    mapper.cpp \
-    subtractitemfactory.cpp \
-    sumexpression.cpp \
-    differenceexpression.cpp \
-    inputexpression.cpp \
-    outputexpression.cpp \
-    inputitemfactory.cpp \
-    outputitemfactory.cpp \
-    arithmeticexpression.cpp \
+    Factories/additemfactory.cpp \
+    Common/mapper.cpp \
+    Factories/subtractitemfactory.cpp \
+    Expressions/sumexpression.cpp \
+    Expressions/differenceexpression.cpp \
+    Expressions/inputexpression.cpp \
+    Expressions/outputexpression.cpp \
+    Factories/inputitemfactory.cpp \
+    Factories/outputitemfactory.cpp \
+    Expressions/arithmeticexpression.cpp \
     itemattributesdialog.cpp \
-    itemconfig.cpp \
-    itemnameprovider.cpp
+    Common/itemconfig.cpp \
+    Common/itemnameprovider.cpp \
+    Data/doubleseries.cpp
 
 HEADERS  += mainwindow.h \
     scene.h \
-    connection.h \
-    inputelement.h \
-    outputelement.h \
-    graphicsitem.h \
-    iexpression.h \
-    data.h \
-    ioelement.h \
-    addition.h \
-    itemfactory.h \
+    GraphicsItems/connection.h \
+    GraphicsItems/inputelement.h \
+    GraphicsItems/outputelement.h \
+    GraphicsItems/graphicsitem.h \
+    Expressions/iexpression.h \
+    Data/data.h \
+    Factories/itemfactory.h \
     itembuttonwidget.h \
     controller.h \
-    additemfactory.h \
-    mapper.h \
-    subtractitemfactory.h \
-    sumexpression.h \
-    differenceexpression.h \
-    inputexpression.h \
-    outputexpression.h \
-    inputitemfactory.h \
-    outputitemfactory.h \
-    arithmeticexpression.h \
+    Factories/additemfactory.h \
+    Common/mapper.h \
+    Factories/subtractitemfactory.h \
+    Expressions/sumexpression.h \
+    Expressions/differenceexpression.h \
+    Expressions/inputexpression.h \
+    Expressions/outputexpression.h \
+    Factories/inputitemfactory.h \
+    Factories/outputitemfactory.h \
+    Expressions/arithmeticexpression.h \
     itemattributesdialog.h \
-    itemconfig.h \
-    itemnameprovider.h
+    Common/itemconfig.h \
+    Common/itemnameprovider.h \
+    Data/doubleseries.h
 
 FORMS    += mainwindow.ui

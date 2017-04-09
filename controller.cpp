@@ -1,12 +1,12 @@
 #include "controller.h"
-#include "connection.h"
-#include "mapper.h"
-#include "additemfactory.h"
-#include "subtractitemfactory.h"
-#include "inputitemfactory.h"
-#include "outputitemfactory.h"
-#include "graphicsitem.h"
-#include "iexpression.h"
+#include "GraphicsItems/connection.h"
+#include "Common/mapper.h"
+#include "Factories/additemfactory.h"
+#include "Factories/subtractitemfactory.h"
+#include "Factories/inputitemfactory.h"
+#include "Factories/outputitemfactory.h"
+#include "GraphicsItems/graphicsitem.h"
+#include "Expressions/iexpression.h"
 #include "itemattributesdialog.h"
 
 #include <QDebug>
@@ -65,20 +65,17 @@ void Controller::itemToDelete()
         int index = finishItem->getInputIndex(connection);
         connection->removeItselfFromItems();
         scene->removeItem(connection);
-        delete connection;
 
         IExpression* endExpression = Mapper::graphicsToExpessionMap[finishItem];
         endExpression->removeExpression(index);
+
+        delete connection;
 
     }else if(GraphicsItem::Type == item->type())
     {
         GraphicsItem *graphicsItem = qgraphicsitem_cast<GraphicsItem *>(item);
         auto connections = graphicsItem->getAllConnections();
         graphicsItem->removeAllConnections();
-
-        IExpression* expression = Mapper::graphicsToExpessionMap[graphicsItem];
-        expression->removeAllExpressions();
-        delete expression;
 
         Connection* con;
         foreach(con, connections)
@@ -87,7 +84,16 @@ void Controller::itemToDelete()
             delete con;
         }
         scene->removeItem(graphicsItem);
+
+        IExpression* expression = Mapper::graphicsToExpessionMap[graphicsItem];
+        expression->removeAllExpressions();
+        if(expression->isOutput())
+        {
+            emit enableOutput(true);
+        }
+
         delete graphicsItem;
+        delete expression;
     }
 
 }

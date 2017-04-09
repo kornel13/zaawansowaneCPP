@@ -5,7 +5,7 @@
 #include <QButtonGroup>
 #include <QHash>
 
-#include "itemfactory.h"
+#include "Factories/itemfactory.h"
 #include "itemattributesdialog.h"
 
 ItemButtonWidget::ItemButtonWidget(QHash<int, ItemAttributesDialog *> *itemAttributesDialogHash, QWidget *parent)

@@ -5,9 +5,9 @@
 #include <QPointF>
 #include <QHash>
 
-#include  "iexpression.h"
+#include  "Expressions/iexpression.h"
 #include "scene.h"
-#include "itemconfig.h"
+#include "Common/itemconfig.h"
 #include "itemattributesdialog.h"
 
 class ItemFactory;

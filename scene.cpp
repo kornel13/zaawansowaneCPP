@@ -1,6 +1,6 @@
 #include "scene.h"
 
-#include <graphicsitem.h>
+#include "GraphicsItems/graphicsitem.h"
 #include <QAction>
 #include <QGraphicsLineItem>
 #include <QLineF>
@@ -9,7 +9,7 @@
 
 #include <QGraphicsSceneMouseEvent>
 
-#include "connection.h"
+#include "GraphicsItems/connection.h"
 
 
 Scene::Scene(QObject *parent)

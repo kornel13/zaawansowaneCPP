@@ -3,7 +3,7 @@
 
 #include <QGraphicsScene>
 #include <QPair>
-#include "itemconfig.h"
+#include "Common/itemconfig.h"
 
 class QAction;
 class QGraphicsLineItem;

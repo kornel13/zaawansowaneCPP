@@ -4,7 +4,7 @@
 #include <QDialog>
 #include <QMap>
 #include <QString>
-#include "itemconfig.h"
+#include "Common/itemconfig.h"
 
 class QLineEdit;
 class QVBoxLayout;

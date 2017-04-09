@@ -7,11 +7,11 @@
 #include "scene.h"
 #include "controller.h"
 #include "itembuttonwidget.h"
-#include "mapper.h"
+#include "Common/mapper.h"
 
 #include <QDebug>
-#include "itemfactory.h"
-#include "itemconfig.h"
+#include "Factories/itemfactory.h"
+#include "Common/itemconfig.h"
 
 #include "itemattributesdialog.h"
 
@@ -93,6 +93,9 @@ void MainWindow::setSignalsSlots()
 
     connect(controller, SIGNAL(enableOutput(bool)),
             itemButtonWidget, SLOT(enableOutput(bool)));
+
+    connect(ui->actionClean, SIGNAL(triggered(bool)),
+            ui->textBrowser, SLOT(clear()));
 }
 
 void MainWindow::sceneSelectionChanged()

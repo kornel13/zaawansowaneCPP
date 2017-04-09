@@ -11,7 +11,7 @@ class QVBoxLayout;
 class ItemAttributesDialog;
 class QToolButton;
 
-#include "itemconfig.h"
+#include "Common/itemconfig.h"
 
 class ItemButtonWidget: public QWidget
 {

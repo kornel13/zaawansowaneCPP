@@ -77,6 +77,8 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
+   <addaction name="actionMove"/>
+   <addaction name="actionAddLine"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <widget class="QToolBar" name="toolBar">
@@ -89,10 +91,9 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
-   <addaction name="actionMove"/>
-   <addaction name="actionAddLine"/>
    <addaction name="separator"/>
    <addaction name="actionRun"/>
+   <addaction name="actionClean"/>
    <addaction name="actionDelete"/>
   </widget>
   <action name="actionMove">
@@ -146,6 +147,14 @@
    </property>
    <property name="shortcut">
     <string>Del</string>
+   </property>
+  </action>
+  <action name="actionClean">
+   <property name="text">
+    <string>Clean</string>
+   </property>
+   <property name="toolTip">
+    <string>Cleans text field below</string>
    </property>
   </action>
  </widget>
