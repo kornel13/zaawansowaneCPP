@@ -4,7 +4,8 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui\
+            charts
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -46,7 +47,8 @@ SOURCES += main.cpp\
     itemattributesdialog.cpp \
     Common/itemconfig.cpp \
     Common/itemnameprovider.cpp \
-    Data/doubleseries.cpp
+    Data/doubleseries.cpp \
+    chartdialog.cpp
 
 HEADERS  += mainwindow.h \
     scene.h \
@@ -55,7 +57,6 @@ HEADERS  += mainwindow.h \
     GraphicsItems/outputelement.h \
     GraphicsItems/graphicsitem.h \
     Expressions/iexpression.h \
-    Data/data.h \
     Factories/itemfactory.h \
     itembuttonwidget.h \
     controller.h \
@@ -72,6 +73,8 @@ HEADERS  += mainwindow.h \
     itemattributesdialog.h \
     Common/itemconfig.h \
     Common/itemnameprovider.h \
-    Data/doubleseries.h
+    Data/doubleseries.h \
+    Data/genericData.h \
+    chartdialog.h
 
 FORMS    += mainwindow.ui

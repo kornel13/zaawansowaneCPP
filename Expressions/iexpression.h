@@ -1,7 +1,7 @@
 #ifndef IEXPRESSION_H
 #define IEXPRESSION_H
 
-#include "Data/data.h"
+#include "Data/genericData.h"
 
 class IExpression
 {

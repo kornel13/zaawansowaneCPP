@@ -53,6 +53,7 @@ MainWindow::MainWindow(QWidget *parent) :
     groupBoxLayout->addWidget(itemButtonWidget);
     ui->groupBox->setLayout(groupBoxLayout);
 
+    d = new ChartDialog();
     setSignalsSlots();
 }
 
@@ -96,6 +97,9 @@ void MainWindow::setSignalsSlots()
 
     connect(ui->actionClean, SIGNAL(triggered(bool)),
             ui->textBrowser, SLOT(clear()));
+
+    connect(ui->actionChart, SIGNAL(triggered(bool)),
+            d, SLOT(open()));
 }
 
 void MainWindow::sceneSelectionChanged()

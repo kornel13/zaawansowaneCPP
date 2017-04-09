@@ -1,5 +1,5 @@
 #include "Common/itemconfig.h"
-#include "Data/data.h"
+#include "Data/genericData.h"
 
 #include <QRegExp>
 

@@ -95,6 +95,7 @@
    <addaction name="actionRun"/>
    <addaction name="actionClean"/>
    <addaction name="actionDelete"/>
+   <addaction name="actionChart"/>
   </widget>
   <action name="actionMove">
    <property name="checkable">
@@ -155,6 +156,17 @@
    </property>
    <property name="toolTip">
     <string>Cleans text field below</string>
+   </property>
+  </action>
+  <action name="actionChart">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Chart</string>
+   </property>
+   <property name="toolTip">
+    <string>Dispalys chart of  output vales</string>
    </property>
   </action>
  </widget>

@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include "chartdialog.h"
 
 class QActionGroup;
 
@@ -32,6 +33,8 @@ private:
     Controller *controller;
     ItemButtonWidget *itemButtonWidget;
     QActionGroup *actionGroup;
+
+    ChartDialog* d;
 
     void setSignalsSlots();
 };

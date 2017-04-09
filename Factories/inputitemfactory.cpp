@@ -1,7 +1,7 @@
 #include "Factories/inputitemfactory.h"
 #include "GraphicsItems/graphicsitem.h"
 #include "Expressions/inputexpression.h"
-#include "Data/data.h"
+#include "Data/genericData.h"
 
 InputItemFactory::InputItemFactory(int id, QObject *parent)
     : ItemFactory(QString("Input Block"), id, parent)

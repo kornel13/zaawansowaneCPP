@@ -3,7 +3,7 @@
 
 #include "Expressions/iexpression.h"
 #include <QVector>
-#include "Data/data.h"
+#include "Data/genericData.h"
 
 class ArithmeticExpression : public IExpression
 {
