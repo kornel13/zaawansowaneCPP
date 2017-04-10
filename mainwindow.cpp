@@ -41,7 +41,9 @@ MainWindow::MainWindow(QWidget *parent) :
     Mapper::actionToEnumMap[ui->actionAddLine] = Insert;
     Mapper::actionToEnumMap[ui->actionMove] = Move;
 
-    controller = new Controller(scene, this);
+    chartDialog = new ChartDialog(this);
+
+    controller = new Controller(scene, chartDialog, this);
     itemButtonWidget = new ItemButtonWidget(controller->getItemAttributesDialogs(), this);
 
     ItemFactory* f = nullptr;
@@ -53,7 +55,6 @@ MainWindow::MainWindow(QWidget *parent) :
     groupBoxLayout->addWidget(itemButtonWidget);
     ui->groupBox->setLayout(groupBoxLayout);
 
-    d = new ChartDialog();
     setSignalsSlots();
 }
 
@@ -99,7 +100,10 @@ void MainWindow::setSignalsSlots()
             ui->textBrowser, SLOT(clear()));
 
     connect(ui->actionChart, SIGNAL(triggered(bool)),
-            d, SLOT(open()));
+            chartDialog, SLOT(open()));
+
+    connect(controller, SIGNAL(enableChart(bool)),
+            ui->actionChart, SLOT(setEnabled(bool)));
 }
 
 void MainWindow::sceneSelectionChanged()

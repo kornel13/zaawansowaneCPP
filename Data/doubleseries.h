@@ -5,8 +5,10 @@
 #include <list>
 #include <iostream>
 
+#include "Data/idataseries.h"
 
-class DoubleSeries
+
+class DoubleSeries : public IDataSeries
 {
 public:
     DoubleSeries(): DoubleSeries(0.0){}
@@ -23,6 +25,8 @@ public:
 
     friend std::ostream& operator<<(std::ostream& s, const DoubleSeries& p);
     friend std::istream& operator>>(std::istream& s, DoubleSeries& p);
+
+    std::list<double> getList() override;
 
 private:
     std::list<double> valueList;

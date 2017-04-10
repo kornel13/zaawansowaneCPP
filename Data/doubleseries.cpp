@@ -12,8 +12,13 @@ DoubleSeries::DoubleSeries(double val)
 
 std::ostream& operator<<(std::ostream& s, const DoubleSeries& ds)
 {
-    for(double value: ds.valueList)
-        s << value << " ";
+    s << "[" <<" ";
+    auto it = ds.valueList.begin();
+    s << *it++;
+
+    for(;it != ds.valueList.end(); ++it)
+        s << ", " << *it ;
+    s << " ]";
     return s;
 }
 
@@ -90,5 +95,10 @@ DoubleSeries DoubleSeries::operator / (DoubleSeries other)
     std::copy(valueList.begin(), valueList.end(), std::back_inserter(result.valueList));
     result /= other;
     return result;
+}
+
+std::list<double> DoubleSeries::getList()
+{
+    return valueList;
 }
 

@@ -18,5 +18,5 @@ Item InputItemFactory::createItemObject(ItemConfig config)
     Data value(0);
     value.fromString(stringValue);
 
-    return Item(new GraphicsItem(0,1,className,itemName,stringValue), new InputExpression(value) );
+    return Item(new GraphicsItem(0,1,className,itemName,"In"), new InputExpression(value) );
 }

@@ -10,8 +10,8 @@
 #include "itemattributesdialog.h"
 
 #include <QDebug>
-Controller::Controller(Scene *scene, QObject *parent)
-    : QObject(parent), scene(scene)
+Controller::Controller(Scene *scene, ChartDialog *chartDialog, QObject *parent)
+    : QObject(parent), scene(scene), chartDialog(chartDialog)
 {
     outputExpression = nullptr;
 
@@ -129,8 +129,19 @@ void Controller::connectionInserted(GraphicsItem* start, unsigned,
         {
             Data result = outputExpression->evaluate();
             if(result.isValid())
+            {
+                if(auto idataseries = result.toIDataSeries())
+                {
+                   chartDialog->setResults(idataseries);
+                   emit enableChart(true);
+                }else
+                    emit enableChart(false);
+
+
                 emit setOutputText(QString("Result is ") + result.toString());
+            }
             else
+                emit enableChart(false);
                 emit setOutputText(result.getErrMsg());
 
 

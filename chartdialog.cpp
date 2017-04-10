@@ -16,29 +16,35 @@ ChartDialog::ChartDialog(QWidget *parent) :
     layout->addWidget(view);
     layout->addWidget(buttonWidget);
 
-    setDummy();
+    chart = new QChart();
+    view->setChart(chart);
+
+    series = new QScatterSeries();
 
     setLayout(layout);
 
 }
 
-void ChartDialog::setDummy()
+
+void ChartDialog::setResults(IDataSeries *data)
 {
-        series = new QScatterSeries();
+    series->clear();
+    chart->removeAllSeries();
 
-        series->append(0, 6);
-        series->append(2, 4);
-        series->append(3, 8);
-        series->append(7, 4);
-        series->append(10, 5);
-        *series << QPointF(11, 1) << QPointF(13, 3) << QPointF(17, 6) << QPointF(18, 3) << QPointF(20, 2);
+    auto dataSeries = data->getList();
+    float index = 0.0f;
+    for(auto value: dataSeries)
+    {
+        series->append(index, value);
+        index = index + 1.0f;
+    }
+   chart->addSeries(series);
 
-        QChart *chart = new QChart();
-        chart->legend()->hide();
-        chart->addSeries(series);
-        chart->createDefaultAxes();
-        chart->setTitle("Simple line chart example");
+   chart->legend()->hide();
+   chart->createDefaultAxes();
+   chart->setTitle("Outup chart");
 
-        view->setChart(chart);
+   view->setRenderHint(QPainter::Antialiasing);
+
 
 }

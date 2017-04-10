@@ -67,6 +67,11 @@ public:
         return errorMsg;
     }
 
+    IDataSeries* toIDataSeries()
+    {
+        return dynamic_cast<IDataSeries*>(&value);
+    }
+
 private:
      T value;
      QString errorMsg;

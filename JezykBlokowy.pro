@@ -75,6 +75,7 @@ HEADERS  += mainwindow.h \
     Common/itemnameprovider.h \
     Data/doubleseries.h \
     Data/genericData.h \
-    chartdialog.h
+    chartdialog.h \
+    Data/idataseries.h
 
 FORMS    += mainwindow.ui
