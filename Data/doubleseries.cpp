@@ -97,6 +97,12 @@ DoubleSeries DoubleSeries::operator / (DoubleSeries other)
     return result;
 }
 
+bool DoubleSeries::operator == (double other)
+{
+    auto result = std::find(valueList.begin(), valueList.end(), other);
+    return result != valueList.end();
+}
+
 std::list<double> DoubleSeries::getList()
 {
     return valueList;

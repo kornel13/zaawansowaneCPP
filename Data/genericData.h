@@ -53,7 +53,13 @@ public:
     /**
      * @brief Operator dzielenia
      */
-    GenericData<T> operator / (GenericData<T> other) { return GenericData( value / other.value); }
+    GenericData<T> operator / (GenericData<T> other)
+    {
+        if(other.value == 0)
+            setErrorMsg(QString("Division by zero"));
+        else
+        return GenericData( value / other.value);
+    }
 
     /**
      * @brief Operator dodawania i przypisania
@@ -73,7 +79,13 @@ public:
     /**
      * @brief Operator dzielenia i przypisania
      */
-    void operator /= (GenericData<T> other) { value /= other.value; }
+    void operator /= (GenericData<T> other)
+    {
+       if(other.value == 0)
+           setErrorMsg(QString("Division by zero"));
+       else
+           value /= other.value;
+    }
 
     /**
      * @brief Konwersja do QString

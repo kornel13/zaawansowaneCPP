@@ -4,6 +4,7 @@
 #include <type_traits>
 #include <list>
 #include <iostream>
+#include <algorithm>
 
 #include "Data/idataseries.h"
 
@@ -65,6 +66,13 @@ public:
      * @brief Operator dzielenia i przypisania
      */
     void operator /= (DoubleSeries other);
+
+    /**
+     * @brief Operator porownania z double
+     * sprawdza czy jakakolwiek wartosc w serii jest rowna other
+     * @param other
+     */
+    bool operator ==(double other);
 
     /**
      * @brief Przeładowanie streamu wyjściowego
