@@ -3,6 +3,8 @@
 #include "Common/mapper.h"
 #include "Factories/additemfactory.h"
 #include "Factories/subtractitemfactory.h"
+#include "Factories/multiplyfactory.h"
+#include "Factories/dividefactory.h"
 #include "Factories/inputitemfactory.h"
 #include "Factories/outputitemfactory.h"
 #include "GraphicsItems/graphicsitem.h"
@@ -17,6 +19,8 @@ Controller::Controller(Scene *scene, ChartDialog *chartDialog, QObject *parent)
 
     addItemFactory(new AddItemFactory(Mapper::getItemFactoryId(), this));
     addItemFactory(new SubtractItemFactory(Mapper::getItemFactoryId(), this));
+    addItemFactory(new MultiplyFactory(Mapper::getItemFactoryId(), this));
+    addItemFactory(new DivideFactory(Mapper::getItemFactoryId(), this));
     addItemFactory(new InputItemFactory(Mapper::getItemFactoryId(), this));
     addItemFactory(new OutputItemFactory(Mapper::getItemFactoryId(), this));
 }

@@ -48,7 +48,11 @@ SOURCES += main.cpp\
     Common/itemconfig.cpp \
     Common/itemnameprovider.cpp \
     Data/doubleseries.cpp \
-    chartdialog.cpp
+    chartdialog.cpp \
+    Factories/multiplyfactory.cpp \
+    Factories/dividefactory.cpp \
+    Expressions/multiplicationexpression.cpp \
+    Expressions/divisionexpressions.cpp
 
 HEADERS  += mainwindow.h \
     scene.h \
@@ -76,6 +80,10 @@ HEADERS  += mainwindow.h \
     Data/doubleseries.h \
     Data/genericData.h \
     chartdialog.h \
-    Data/idataseries.h
+    Data/idataseries.h \
+    Factories/multiplyfactory.h \
+    Factories/dividefactory.h \
+    Expressions/multiplicationexpression.h \
+    Expressions/divisionexpressions.h
 
 FORMS    += mainwindow.ui
