@@ -24,7 +24,7 @@ public:
      * Oblicza wertość wyjścia na podstawie wartości wejściowych
      * @return Data Wynik obliczeń
      */
-    virtual Data evaluate();
+    virtual Data evaluate() = 0;
 
     /**
      * @brief Dodaje wyrażanie do wejścia o przekazanym indeksie
